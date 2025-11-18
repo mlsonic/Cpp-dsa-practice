@@ -1,1 +1,21 @@
-
+class Solution{
+public:
+    int upperBound(vector<int> &nums, int x){
+        int n=nums.size();
+        int low=0,ans=-1,high=n-1;
+        while(high>=low){
+            int mid=(high+low)/2;
+            if(nums[mid]>x){
+                ans=mid;
+                //may be the answer
+                high=mid-1;
+                //looking for smaller index
+            }
+            else {
+                low=mid+1;
+            }
+        }
+        return ans;
+        
+    }
+};
