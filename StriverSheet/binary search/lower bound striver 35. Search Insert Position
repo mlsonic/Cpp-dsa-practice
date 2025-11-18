@@ -2,7 +2,7 @@ class Solution{
 public:
     int lowerBound(vector<int> &nums, int x){
         int n=nums.size();
-        int low=0,ans=n,high=n-1;
+        int low=0,ans=n,high=n-1; //ANS is set to be and if index is out of array
         while(high>=low){
             int mid=(high+low)/2;
             if(nums[mid]>=x){
