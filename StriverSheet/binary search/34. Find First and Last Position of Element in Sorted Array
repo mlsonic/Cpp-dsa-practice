@@ -14,3 +14,16 @@ public:
     }
 };
 
+//using lower bound and upper bound  TC=2*O(log2(n)) SC=O(1)
+class Solution {
+public:
+    vector<int> searchRange(vector<int>& nums, int target) {
+        int n=nums.size();
+        int lb=0,ub=0;
+        lb=lower_bound(nums.begin(),nums.end(),target)-nums.begin(); // will find starting point
+        ub=upper_bound(nums.begin(),nums.end(),target)-nums.begin(); // will find ending point
+        if(lb==n || nums[lb] != target) return {-1,-1}; // when the target is not present this conditon comes
+        return {lb,ub-1};
+    }
+};
+
