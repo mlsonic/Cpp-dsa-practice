@@ -1,0 +1,29 @@
+
+class Solution {
+  public:
+    vector<int> getFloorAndCeil(int x, vector<int> &arr) {
+        // floor is largest element less than equal to x
+        //ceil is like lower bound small element greator than equal to x
+        int n=arr.size();
+        int low=0,high=n-1,ans=-1,ans1=-1;
+        sort(arr.begin(),arr.end()); //for binary search array need to be sorted
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(arr[mid]<=x){
+                ans=arr[mid];
+                low=mid+1;
+            }
+            else high=mid-1;
+        }
+        low=0,high=n-1; //reset low and high
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(arr[mid]>=x){
+                ans1=arr[mid];
+                high=mid-1;
+            }
+            else low=mid+1;
+        }
+        return {ans,ans1};
+    }
+};
