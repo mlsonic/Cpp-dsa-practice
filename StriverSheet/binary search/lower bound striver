@@ -1,11 +1,11 @@
-class Solution {
-  public:
-    int findFloor(vector<int>& arr, int x) {
-        int n=arr.size();
+class Solution{
+public:
+    int lowerBound(vector<int> &nums, int x){
+        int n=nums.size();
         int low=0,ans=-1,high=n-1;
         while(high>=low){
             int mid=(high+low)/2;
-            if(arr[mid]>=x){
+            if(nums[mid]>=x){
                 ans=mid;
                 //may be the answer
                 high=mid-1;
@@ -16,6 +16,7 @@ class Solution {
             }
         }
         return ans;
+        
     }
 };
 // shortcut lower_bound(arr.begin(),arr.end(),x)-arr.begin()
