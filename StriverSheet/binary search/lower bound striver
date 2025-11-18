@@ -1,0 +1,21 @@
+class Solution {
+  public:
+    int findFloor(vector<int>& arr, int x) {
+        int n=arr.size();
+        int low=0,ans=-1,high=n-1;
+        while(high>=low){
+            int mid=(high+low)/2;
+            if(arr[mid]>=x){
+                ans=mid;
+                //may be the answer
+                high=mid-1;
+                //looking for smaller index
+            }
+            else {
+                low=mid+1;
+            }
+        }
+        return ans;
+    }
+};
+// shortcut lower_bound(arr.begin(),arr.end(),x)-arr.begin()
