@@ -1,0 +1,12 @@
+// used find above *last & first position element them subract that as index 
+class Solution {
+  public:
+    int countFreq(vector<int>& arr, int target) {
+        int n=arr.size();
+        int lb=0,ub=0;
+        lb=lower_bound(arr.begin(),arr.end(),target)-arr.begin(); // will find starting point
+        ub=upper_bound(arr.begin(),arr.end(),target)-arr.begin(); // will find ending point
+        if(lb==n ||arr[lb] != target) return 0; // when the target is not present this conditon comes
+        return ub-lb;
+    }
+};
