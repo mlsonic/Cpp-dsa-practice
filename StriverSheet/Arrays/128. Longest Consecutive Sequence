@@ -1,0 +1,23 @@
+//my brute force approch TC=O(N)
+class Solution {
+public:
+    int longestConsecutive(vector<int>& nums) {
+        if (nums.empty()) return 0;
+
+        sort(nums.begin(), nums.end());
+        int cnt = 1, maxi = 1;
+
+        for (int i = 1; i < nums.size(); i++) {
+
+            if (nums[i] == nums[i - 1] + 1) {
+                cnt++;// check wheather the previous element is in there or not if yes cnt is increase
+            }
+            else if (nums[i] != nums[i - 1]) {
+                cnt = 1;// there can be duplicates so this will check previous elemengt was duplicate or not is not same so cnt will be reset to 1 mean understand we are also setting cnt zero here if sequence is not consecutive as else will work only when no dupicate and no consecutive.
+            }
+            maxi = max(maxi, cnt);//store max  number of cnt
+        }
+
+        return maxi;
+    }
+};
