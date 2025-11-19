@@ -27,3 +27,36 @@ public:
     }
 };
 
+//doing using Binary Search
+class Solution {
+public:
+    vector<int> searchRange(vector<int>& nums, int target) {
+        int n=nums.size();
+        int low=0,high=n-1;
+        int a=-1,b=-1;
+        // applied binary search for find starting index
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(nums[mid]==target){
+                a=mid;
+                high=mid-1;
+            }
+            else if(nums[mid]>=target) high=mid-1;
+            else low=mid+1;
+        }
+        low=0,high=n-1;
+        //applied binary search for finding ending index
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(nums[mid]==target){
+                b=mid;
+                low=mid+1;
+            }
+            else if(nums[mid]>=target) high=mid-1;
+            else low=mid+1;
+        }
+        return {a,b};// return start and end index as vector
+        
+    }
+};
+
