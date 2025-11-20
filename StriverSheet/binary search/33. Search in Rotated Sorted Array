@@ -9,3 +9,28 @@ public:
         return a;
     }
 };
+
+//Using binary search
+class Solution {
+public:
+    int search(vector<int>& nums, int target) {
+        int n=nums.size(), a=-1;
+        int low=0,high=n-1;
+        while(low<=high){
+            int mid=low +(high-low)/2;
+            if(nums[mid]==target) return mid;
+            if(nums[mid]>=nums[low]){// if left hard is  sorterd
+                if(nums[low]<=target && target<nums[mid])
+                    high=mid-1;
+                else low=mid+1;//if not in left half
+            }
+            else{// if right half is sorted
+                if(nums[high]>=target && target>nums[mid])
+                    low=mid+1;
+                else high=mid-1;//if not in right half
+            }
+            cout<<mid;
+        }
+        return -1;
+    }
+};
