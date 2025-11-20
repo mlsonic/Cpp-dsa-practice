@@ -9,17 +9,17 @@ public:
             //this is optimization not compulsory but if low element is small than element at high stores that value and loop end.
             if(nums[low]<nums[high]){
                 mini=min(mini,nums[low]);
-                    break;
+                break;
             }
             //if right hald is sorted check in left half as high is greator than mid element
             if(nums[high]>nums[mid]){
-            mini=min(nums[mid],mini);
-            high=mid-1;
+                mini=min(nums[mid],mini);
+                high=mid-1;
             }
             //if left is sorted check in right right half as nums[high]is less than nums[mid]
             else{
                 mini=min(nums[mid],mini);
-            low=mid+1;
+                low=mid+1;
             }
         }
 
