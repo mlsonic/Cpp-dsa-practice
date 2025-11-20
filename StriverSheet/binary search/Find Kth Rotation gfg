@@ -1,0 +1,33 @@
+//binary search simple conecpt where minimum value is present that index tell us how many time array has been rotated
+class Solution {
+  public:
+    int findKRotation(vector<int> &arr) {
+        int n=arr.size();
+        int low=0,high=n-1,index=0,mini=INT_MAX;
+        while(low<=high){
+            int mid=(low+high)/2;
+             if(arr[low]<arr[high]){
+                if(arr[low]<mini){
+                 index=low;
+                 mini=arr[low];
+                }
+                break;
+            }
+            if(arr[high]>arr[mid]){
+                if(arr[mid]<mini){
+                 index=mid;
+                 mini=arr[mid];
+                }
+                high=mid-1;
+            }
+            else{
+                if(arr[mid]<mini){
+                 index=mid;
+                 mini=arr[mid];
+                }
+                low=mid+1;
+            }
+        }
+        return index;
+    }
+};
