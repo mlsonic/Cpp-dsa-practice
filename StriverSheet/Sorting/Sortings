@@ -1,0 +1,136 @@
+//sorting I
+//selection sort
+class Solution {
+public:
+    vector<int> selectionSort(vector<int>& nums) {
+        int n=nums.size();
+        for(int i=0;i<=n-2;i++){
+            int min=i;
+            for(int j=i;j<=n-1;j++){
+                if(nums[min]>nums[j]) min=j;
+            }
+            int temp=nums[min];
+            nums[min]=nums[i];
+            nums[i]=temp;
+        }
+        return nums;
+
+    }
+};
+
+//bubble sort
+class Solution {
+public:
+    vector<int> bubbleSort(vector<int>& nums) {
+        int n=nums.size();
+        for(int i=0;i<n-1;i++){
+            for(int j=0;j<n-i-1;j++){
+            if(nums[j]>nums[j+1]){
+                int temp=nums[j];
+                nums[j]=nums[j+1];
+                nums[j+1]=temp;
+            }
+    
+            }
+        }
+        return nums;
+    }
+
+// insertion sort
+class Solution {
+public:
+    vector<int> insertionSort(vector<int>& nums) {
+       int n=nums.size();
+       for(int i=0;i<=n-1;i++){
+       int j=i;
+         while(j>0 && nums[j-1]>nums[j]){
+          int temp=nums[j-1];
+          nums[j-1]=nums[j];
+          nums[j]=temp;
+          j--;
+         }
+        
+       }
+       
+       
+// Merge Sort
+class Solution {
+  public:
+    void merge(vector<int>& arr,int l, int mid ,int r){
+        vector<int> temp;
+        int left=l;
+        int right=mid+1;
+        while (left<=mid && right<=r){//[1,2,3] [4,5,6]
+            if(arr[left]<=arr[right]){
+                temp.push_back(arr[left]);
+                left++;
+            }
+            else{
+                temp.push_back(arr[right]);
+                right++;
+            }
+        }
+        
+        while (left <= mid) temp.push_back(arr[left++]);
+        while (right <= r) temp.push_back(arr[right++]);
+        
+        for (int i=l ; i<=r;i++){
+            arr[i]=temp[i-l];
+            
+        }
+        
+    }
+    void mergeSort(vector<int>& arr, int l, int r) {
+      if (l<r) {
+      int mid=(l+r)/2;
+      mergeSort(arr,l,mid);
+      mergeSort(arr,mid+1,r);
+      merge(arr,l,mid,r);
+      }
+      else{
+          return;
+      }
+      
+    }
+};
+
+//bubble sort by recursion
+class Solution {
+  public:
+  
+    void bubbleSort(vector<int>& arr) {
+        int n=arr.size();
+        if (n==1) return;
+        int cnt=0;
+        for(int i=0;i<n-1;i++){
+            if(arr[i]>arr[i+1]){
+                swap(arr[i],arr[i+1]);
+                cnt++;
+            }
+        }
+        if(cnt==0) return;
+        int last=arr.back();
+        arr.pop_back();
+        bubbleSort(arr);
+        arr.push_back(last);
+    }
+};
+
+//insertion sort by recursion
+class Solution {
+  public:
+    void insertionSort(vector<int>& arr) {
+        int n=arr.size();
+        if(n<=1) return;
+        int last=arr.back();
+        arr.pop_back();
+        insertionSort(arr);
+        arr.push_back(last);
+        int j=n-1;
+        while(j>0 && arr[j-1]>arr[j]){
+            swap(arr[j-1],arr[j]);
+            j--;
+        }
+        return; 
+    }
+};
