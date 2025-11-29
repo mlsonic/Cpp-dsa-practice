@@ -11,8 +11,8 @@ public:
             int mid=(low+high)/2;
             if(nums[mid]>nums[mid-1] && nums[mid]>nums[mid+1]) return mid;
             else if(nums[mid]>nums[mid-1]) low=mid+1; // because below this part is increasing
-            else high=mid-1;// because above this part is decreasin
-
+            else high=mid-1;// because above this part is decreasing
+            //for multiple peak we need to add add else condition as low=mid-1 or high =high+1 as[1521251] mid come under non condtion
         }
         return -1;
     }
