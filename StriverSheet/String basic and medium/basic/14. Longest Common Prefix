@@ -1,0 +1,24 @@
+// tc=O(m +n*m) brute force
+class Solution {
+public:
+    string longestCommonPrefix(vector<string>& strs) {
+        int mini=INT_MAX;
+        string a;
+        for(int i=0;i<strs.size();i++){
+            if(strs[i].size()<mini){
+                mini=i;
+            }// find lowest size string to improve time complexity
+        }
+        for(int i=0;i<strs[mini].size();i++){
+            int cnt=strs.size();
+            for(int j=0;j<strs.size();j++) {
+                if(strs[j][i]==strs[mini][i]) cnt--; // check if char is present in every string on same index
+            }
+            if (cnt==0) {
+                a+=strs[mini][i];
+            }
+            else break; // to stop when prefix is over
+        }
+        return a;
+    }  
+};
