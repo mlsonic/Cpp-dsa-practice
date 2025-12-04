@@ -1,0 +1,22 @@
+class Solution {
+public:
+    bool isIsomorphic(string s, string t) {
+        int n = s.size();
+        if (n != t.size()) return false;
+
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+
+                // If characters in s are same, t must match pattern
+                if (s[i] == s[j] && t[i] != t[j])
+                    return false;
+
+                // If characters in s are different, t must be different
+                if (s[i] != s[j] && t[i] == t[j])
+                    return false;
+            }
+        }
+
+        return true;
+    }
+};
