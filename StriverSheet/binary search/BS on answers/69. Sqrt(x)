@@ -1,3 +1,18 @@
+class Solution {
+public:
+    int mySqrt(int x) {
+        int low=0,high=x;
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(1LL*mid*mid<=x) {
+                low=mid+1;
+                }
+            else high=mid-1;
+        }
+        return high;//as while get false high move at position where last possible answer can be store so it is answer
+    }
+};
+
 //By binary search 
 class Solution {
 public:
