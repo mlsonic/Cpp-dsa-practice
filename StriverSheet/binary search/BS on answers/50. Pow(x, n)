@@ -1,0 +1,12 @@
+class Solution {
+public:
+    double myPow(double x, int n) {
+        double a=1;
+        int c=abs(n);
+        for(int i=0;i<c;i++){
+            a=a*x;
+        }
+        if(n>=0) return a;// if power is postive 
+        else return 1/a; //if power is negative
+    }
+};
