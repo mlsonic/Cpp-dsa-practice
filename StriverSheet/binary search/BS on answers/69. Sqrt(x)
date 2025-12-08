@@ -1,3 +1,19 @@
+//By binary search 
+class Solution {
+public:
+    int mySqrt(int x) {
+        int low=0,high=x,ans=0;
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(1LL*mid*mid<=x) {// 1LL is used to stop overflow as value can be huge
+                low=mid+1;
+                ans=mid;
+                }
+            else high=mid-1;
+        }
+        return ans;
+    }
+};
 //brute force tC=O(N)
 class Solution {
 public:
