@@ -1,6 +1,6 @@
 
 
-// brute force linear search soltuion
+// brute force linear search soltuion tc= O(m*log2(n))
 class Solution {
   public:
     int nthRoot(int n, int m) {
