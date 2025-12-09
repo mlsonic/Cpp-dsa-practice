@@ -1,0 +1,16 @@
+
+
+// brute force linear search soltuion
+class Solution {
+  public:
+    int nthRoot(int n, int m) {
+        for(int i=0;i<=m;i++){
+            if(pow(i,n)==m) return i; //here we havent study code for pow(i,n) 
+            else if(pow(i,n)>m){
+             break;
+            }
+        }
+        return -1;
+    }
+};
+//code for pow(i,n) can be made using for loop or power exponentation method
