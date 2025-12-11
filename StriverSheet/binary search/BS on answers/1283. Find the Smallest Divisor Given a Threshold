@@ -10,6 +10,7 @@ public:
         return false;
     }
     int smallestDivisor(vector<int>& nums, int threshold) {
+        //if (threshold < nums.size())  return -1; this was not ask in question but when nums element divded by max element all divsor are one and sum of 1 should not exceed the nums.size();
         int low=1,high=*max_element(nums.begin(),nums.end());
         int ans=high;
         while(low<=high){
