@@ -1,0 +1,55 @@
+//by binary search
+class Solution {
+public:
+    int shipWithinDays(vector<int>& weights, int days) {
+        int low=*max_element(weights.begin(),weights.end());
+        int high=accumulate(weights.begin(), weights.end(),0);
+        int ans=high;
+        while(low<=high){
+            int mid=(low+high)/2;
+            int total=1;
+            long long sum=0;
+            for(int j=0;j<weights.size();j++){
+                if(sum+weights[j]>mid){ //check is sum exceed min capacity 
+                    total++;
+                    sum=weights[j];
+                }
+                else{
+                    sum+=weights[j];
+                }
+            }
+            if(total<=days){
+                ans=mid;
+               high=mid-1; 
+            }
+            else low=mid+1;
+        }
+        return ans;
+    }
+};
+
+//brute force without binary search
+class Solution {
+public:
+    int shipWithinDays(vector<int>& weights, int days) {
+        int a=*max_element(weights.begin(),weights.end());
+        int b=accumulate(weights.begin(), weights.end(),0);
+        for(int i=a;i<=b;i++){
+            int total=0;
+            long long sum=0;
+            for(int j=0;j<weights.size()-1;j++){
+                sum+=weights[j];
+                if(sum+weights[j+1]>i){
+                    total++;
+                    sum=0;
+                }
+            }
+            if(weights[weights.size()-1]<=i){
+                total++; //check the last element
+            }
+            if(total<=days) return i;
+            total=0;
+        }
+        return -1;
+    }
+};
