@@ -1,0 +1,34 @@
+//by binary search easy but 
+class Solution {
+public:
+    int findKthPositive(vector<int>& arr, int k) {
+        int low=0,high=arr.size()-1;
+        while(low<=high){
+            int mid=(low+high)/2;
+            int missing=arr[mid]-(mid+1);
+            if(missing<k) {
+                low=mid+1;
+            }
+            else high=mid-1;
+        }
+        return low+k;//how low + k ? derive from formula arr[high]+more what is more more is 
+        //more is k-missing so ? what was missing missing was arr[high]-(high+1) so putting this in more give us high+1+k when low end what is low nothing but high+1 so answer is low+1
+    }
+};
+
+//basic logic yeh hai code ka agar empty array hogi kth missing element k hi hoga so agar array mai koi number <=k hai matlab 
+woh toh missing nhi hai so the missing element will be k++ because element are in strictly increasing order so this works.
+//Brute force by striver;
+class Solution {
+public:
+    int findKthPositive(vector<int>& arr, int k) {
+        int n=arr.size();
+        for(int i=0;i<n;i++){
+            if(k>=arr[i]){ //agar se chota hai i th element means 
+                k++;
+            }
+            else break;
+        }
+        return k;
+    }
+};
