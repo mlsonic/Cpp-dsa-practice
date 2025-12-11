@@ -1,0 +1,62 @@
+//by binary search optimized time complexity is O(n*log(high-low))
+class Solution {
+public:
+    int possible(vector<int> bloomDay,int day,int k){
+        int cnt=0;
+        int totalboque=0;
+        for(int i=0;i<bloomDay.size();i++){
+            if(bloomDay[i]<=day) cnt++; //count how many adjacent folwer can be taken
+            else {
+                totalboque+=cnt/k; //count total boque 
+                cnt=0;
+            }
+        }
+        totalboque+=cnt/k;//final total bi=boque can be made 
+        return totalboque;
+    }
+    int minDays(vector<int>& bloomDay, long long m,int k) {
+        int n=bloomDay.size();
+        if (m*k>n) return -1;
+        int low=*min_element(bloomDay.begin(),bloomDay.end());
+        int high=*max_element(bloomDay.begin(),bloomDay.end());
+        int ans=high;
+        while(low<=high){
+            int mid= (low+high)/2;
+            if(possible(bloomDay,mid,k)>=m){
+                ans=mid;
+                high=mid-1;
+            } 
+            else low=mid+1;
+        }
+    return ans;
+    }
+};
+
+
+Brute force
+class Solution {
+public:
+    int possible(vector<int> bloomDay,int day,int k){
+        int cnt=0;
+        int totalboque=0;
+        for(int i=0;i<bloomDay.size();i++){
+            if(bloomDay[i]<=day) cnt++;
+            else {
+                totalboque+=cnt/k;
+                cnt=0;
+            }
+        }
+        totalboque+=cnt/k;
+        return totalboque;
+    }
+    int minDays(vector<int>& bloomDay, int m, int k) {
+        int n=bloomDay.size();
+        if (m*k>n) return -1;
+        int a=*min_element(bloomDay.begin(),bloomDay.end());
+        int b=*max_element(bloomDay.begin(),bloomDay.end());
+        for(int i=a;i<=b;i++){
+            if(possible(bloomDay,i,k)>=m) return i;
+        }
+    return -1;
+    }
+};
