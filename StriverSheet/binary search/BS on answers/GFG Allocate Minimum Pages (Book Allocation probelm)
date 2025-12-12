@@ -1,0 +1,74 @@
+//bu binary search tc=O(n*log(sum-max))
+class Solution {
+  public:
+    int cntstd(vector<int> arr,int page){
+        int cnt=1,pagestd=0;
+        for(int i=0;i<arr.size();i++){
+            if(pagestd+arr[i]<=page){
+                pagestd+=arr[i];
+                //jab jab ek student exceed karega page limit ko means dusre student ko
+                // mean dusre student ko dena padega pages abh aur aise sabhme batega
+                }
+            else{
+                cnt++;
+                pagestd=arr[i];
+            }
+        }
+        return cnt;
+    } 
+  
+    int findPages(vector<int> &arr, int k) {
+        int n=arr.size();
+        if(k>n) return -1;
+        int low=*max_element(arr.begin(),arr.end());//this is the min pages 
+        int high=accumulate(arr.begin(),arr.end(),0);//this is the maximum pages 
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(cntstd(arr,mid)<=k){
+                high=mid-1;
+            }
+            else{
+                low=mid+1;
+            }
+            //agar cnt student jo is k se less hai agar woh 25 page mai adjust kar sakht hai 
+            //toh k student toh kar hi payenge aur i pages mai yeh possible hai jo min tha 
+        }
+        return low;
+    }
+};
+
+
+
+//baisc logic brute force
+class Solution {
+  public:
+    int cntstd(vector<int> arr,int page){
+        int cnt=1,pagestd=0;
+        for(int i=0;i<arr.size();i++){
+            if(pagestd+arr[i]<=page){
+                pagestd+=arr[i];
+                //jab jab ek student exceed karega page limit ko means dusre student ko
+                // mean dusre student ko dena padega pages abh aur aise sabhme batega
+                }
+            else{
+                cnt++;
+                pagestd=arr[i];
+            }
+        }
+        return cnt;
+    } 
+  
+    int findPages(vector<int> &arr, int k) {
+        int n=arr.size();
+        if(k>n) return -1;
+        int low=*max_element(arr.begin(),arr.end());//this is the min pages 
+        int high=accumulate(arr.begin(),arr.end(),0);//this is the maximum pages 
+        for(int i=low;i<=high;i++){
+            if(cntstd(arr,i)<=k) return i;
+            //agar cnt student jo is k se less hai agar woh 25 page mai adjust kar sakht hai 
+            //toh k student toh kar hi payenge aur i pages mai yeh possible hai jo min tha 
+        }
+        return -1;
+    }
+};
+};
