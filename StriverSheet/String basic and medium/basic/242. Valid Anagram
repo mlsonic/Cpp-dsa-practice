@@ -1,0 +1,34 @@
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        int n1=s.size(),n2=t.size();
+        if(n1==n2){
+            map<char,int> st1,st2;
+            for(int i=0;i<n1;i++){
+                st1[s[i]]++;
+                st2[t[i]]++;
+            }
+            if(st1==st2) return true;
+        }
+        return 0;
+    }
+};
+
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        int n1=s.size();
+        int n2=t.size();
+        if(n1==n2){
+            int cnt=0;
+            map<int,int> st1;
+            map<int,int> st2;
+            for(int i=0;i<n1;i++){
+                st1[s[i]]++;
+                st2[t[i]]++;
+            }
+            if(st1==st2) return true;
+        }
+        return 0;
+    }
+};
