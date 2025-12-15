@@ -1,4 +1,4 @@
-// Brute force 
+// Brute force space complexity is n*n
 class Solution {
 public:
     void rotate(vector<vector<int>>& matrix) {
