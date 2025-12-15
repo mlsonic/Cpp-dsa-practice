@@ -1,0 +1,48 @@
+//O(N)
+class Solution {
+public:
+    bool rotateString(string s, string goal) {
+        if(s.size()!=goal.size()) return false;
+            string c=s+s;
+            for(int i=0;i<s.size();i++){
+                if(c.substr(i,s.size())==goal) return true;
+            }
+        return 0;       
+    }
+};
+
+//O(N*N)
+class Solution {
+public:
+    bool rotateString(string s, string goal) {
+        int n=s.size();
+        string a=s;
+        for(int i=0;i<=n;i++){
+            reverse(s.begin(),s.begin()+i);
+            reverse(s.begin()+i,s.end());
+            reverse(s.begin(),s.end());
+            if(s==goal) return true;
+            s=a;
+        }
+        return false;
+        
+    }
+};
+
+//O(N*N)
+class Solution {
+public:
+    bool rotateString(string s, string goal) {
+        if(s.size()==goal.size()){
+            for(int i=0;i<s.size();i++){
+                if(s==goal) return true;
+                else{
+                    char b=s[s.size()-1];
+                    s.pop_back();
+                    s=b+s;
+                }
+            }
+        }
+        return 0;
+    }
+};
