@@ -1,0 +1,24 @@
+class Solution {
+public:
+    string reverseWords(string s) {
+        reverse(s.begin(), s.end()); //Reverse whole string word also get reverse
+        int n = s.size();
+        string ans = "";
+        for (int i = 0; i < n; i++) {
+            string st = "";
+            // Collect characters for the current word
+            while (i < n && s[i] != ' ') {
+                st += s[i];
+                i++;
+            }
+            // If we found a word (skip multiple spaces)
+            if (st.size() > 0) {
+                reverse(st.begin(), st.end()); //reverse the word
+                ans += ' ' + st; // Add space and word
+            }
+        }
+        If ans is empty (string was just spaces), return empty
+        if (ans.size() == 0) return "";
+        return ans.substr(1); // Remove the specific leading space we added
+    }
+};
