@@ -1,4 +1,23 @@
-// Brute force space complexity is n*n
+//IN PLACE solution 
+class Solution {
+public:
+    void rotate(vector<vector<int>>& matrix) {
+        int n=matrix.size();
+        //We have used the i and j limit as lowest as for swap we need to access only half of matrix where i!=j so as [j][i] present we are avoding some thing
+        for(int i=0;i<n-1;i++){
+            for(int j=i+1;j<n;j++){
+                swap(matrix[i][j],matrix[j][i]);
+            }
+        }
+        for(int i=0;i<n;i++){
+        reverse(matrix[i].begin(),matrix[i].end());
+        }
+    }
+};
+
+//first transpose then reverse
+
+// Brute force space complexity is n*n not in place
 class Solution {
 public:
     void rotate(vector<vector<int>>& matrix) {
