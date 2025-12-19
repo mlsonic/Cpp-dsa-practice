@@ -1,4 +1,30 @@
-//my brute force approch TC=O(N)
+// time complexity O(n)
+class Solution {
+public:
+    int longestConsecutive(vector<int>& nums) {
+        if(nums.size() == 0) return 0;
+        int longest = 1;//min longest is 1
+        unordered_set<int> st; //unordered because less time complexity to find
+        for(int i = 0; i < nums.size(); i++){
+            st.insert(nums[i]);
+        }
+        for(auto it:st){
+            if(st.find(it-1)==st.end()){//agar previous element set mai nhi hai;
+                int cnt = 1;// toh count 1 karer
+                int x=it;//int x = it karege
+                //while loop banake check karerge is next element is present 
+                while(st.find(x+1) != st.end()){
+                    x = x + 1;//if yes check next element
+                    cnt++;//and increase the cnt
+                }
+                longest = max(longest, cnt);
+            }
+        }
+        return longest;
+    }
+};
+
+//my brute force approch TC=O(n log n) + O(n) = O(n log n)
 class Solution {
 public:
     int longestConsecutive(vector<int>& nums) {
