@@ -1,0 +1,19 @@
+// Brute force time complexity O(m*n)
+class Solution {
+public:
+    vector<vector<int>> transpose(vector<vector<int>>& matrix) {
+        int m = matrix.size();
+        int n = matrix[0].size();
+        vector<vector<int>> v;
+        
+        for(int i=0;i<n;i++){
+            vector<int> a;
+            for(int j=0;j<m;j++){
+                a.push_back(matrix[j][i]);
+            }
+            v.push_back(a);
+        }
+        
+        return v;
+    }
+};
