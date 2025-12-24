@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-struct Node {//struct can be us but use class
+struct Node {//struct can be us but use class class is better for object oriented
     public:
     int data;
     Node* next;
@@ -10,6 +10,7 @@ struct Node {//struct can be us but use class
     Node(int data1,Node* next1){
         data=data1;
         next=next1;
+    public:
     Node(int data1){// this can be used when we dont want to store null ptr again and again in next
         data=data1;
         next=nullptr;
