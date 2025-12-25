@@ -5,7 +5,7 @@ int print(Node* head){
     head=head->next;
     }
 }
-
+// for removing head
 Node* removeHead(Node* head){
     if(head==NULL) return head;
     Node* temp=head;
@@ -14,10 +14,29 @@ Node* removeHead(Node* head){
     return head;
 }
 
+//removing tail
+Node* removetail(Node* head){
+    if(head==NULL || head->next == NULL ){
+        if(head->next == NULL) delete head;
+        return NULL;
+    }
+    Node* temp = head;
+    while(temp->next->next !=NULL){
+        temp=temp->next;
+    }
+    delete temp->next;
+    temp->next=nullptr;
+    return head;
+
+}
+
 int main(){
     vector<int>  arr ={5,6,8,9};
     Node* head = convertarrtoll(arr);
     head = removeHead(head);
     print(head);
 }
+
+
+
 
