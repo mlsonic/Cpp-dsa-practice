@@ -9,10 +9,11 @@ public:
             temp=temp->next;
         }
         int a=cnt/2;//cnt after which we have to half list
+        temp=head;
         while(a>0){
-            head=head->next;
+            temp=temp->next;
             a--;
         }
-        return head;
+        return temp;
     }
 };
