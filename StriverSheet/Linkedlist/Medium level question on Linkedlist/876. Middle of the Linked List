@@ -1,0 +1,17 @@
+class Solution {
+public:
+    ListNode* middleNode(ListNode* head) {
+        ListNode* temp=head;
+        int cnt=0;
+        while(temp){//here we are counting number of el in LL
+            cnt++;
+            temp=temp->next;
+        }
+        int a=cnt/2;//cnt after which we have to half list
+        while(a>0){
+            head=head->next;
+            a--;
+        }
+        return head;
+    }
+};
