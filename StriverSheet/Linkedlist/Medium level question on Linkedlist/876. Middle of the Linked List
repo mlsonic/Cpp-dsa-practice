@@ -1,3 +1,19 @@
+//tortoise and hare method 
+//optimized solution TC=O(n/2)=O(n)
+class Solution {
+public:
+    ListNode* middleNode(ListNode* head) {
+        ListNode* slow=head;
+        ListNode* fast=head;
+
+        while(fast && fast->next){//this while condition satify both even and odd list
+            slow=slow->next;//slow moves 1 step ahead
+            fast=fast->next->next;//fast move 2 step ahead
+        }
+        return slow;
+    }
+};
+
 //Brute force TC=O(n+n/2)
 class Solution {
 public:
