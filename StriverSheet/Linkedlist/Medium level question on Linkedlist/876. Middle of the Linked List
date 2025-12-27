@@ -1,4 +1,4 @@
-//Brute force TC=O(n)
+//Brute force TC=O(n+n/2)
 class Solution {
 public:
     ListNode* middleNode(ListNode* head) {
