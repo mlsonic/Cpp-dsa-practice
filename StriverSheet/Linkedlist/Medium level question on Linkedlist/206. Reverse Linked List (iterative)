@@ -1,3 +1,4 @@
+//optimized 
 class Solution {
 public:
     ListNode* reverseList(ListNode* head) {
@@ -5,12 +6,12 @@ public:
         ListNode* prev =  nullptr;
         ListNode* front = nullptr;
         while(temp){
-            front = temp-next;
-            temp->next = prev;
-            prev = temp
-            temp = front;
+            front = temp->next; // first we need to store next node so it will not get lost
+            temp->next = prev; // change next as pointer to previos pointer location
+            prev = temp; move prev;
+            temp = front; move temp
         }
-        return temp;
+        return prev; //at end prev become head 
     }
 };
 
