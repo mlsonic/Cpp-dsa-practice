@@ -1,4 +1,4 @@
-//brute force tc=O(2N) SC=
+//brute force tc=O(2N) SC=O(N)
 class Solution {
 public:
     ListNode* reverseList(ListNode* head) {
