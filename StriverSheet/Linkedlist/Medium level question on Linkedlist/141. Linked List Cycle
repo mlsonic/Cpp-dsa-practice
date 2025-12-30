@@ -1,0 +1,14 @@
+// Brute force tc=O(n*2*log(n)) sc = O(n)
+class Solution {
+public:
+    bool hasCycle(ListNode *head) {
+        map<ListNode*,int> mpp;
+        ListNode* temp = head;
+        while(temp){
+            if(mpp.find(temp)!=mpp.end()) return true; //check if already present logn
+            mpp[temp]=1;//new entry created in map log n
+            temp = temp->next;
+        }
+        return false;
+    }
+};
