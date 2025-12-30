@@ -1,3 +1,32 @@
+//optimized tortoise and hare algo Tc= O(2N) sc=O(1)
+//Floyd’s Cycle Detection + Cycle Entry algorithm
+class Solution {
+public:
+    ListNode *detectCycle(ListNode *head) {
+        ListNode* slow = head;
+        ListNode* fast = head;
+        while(fast && fast->next){
+            slow = slow->next;
+            fast = fast->next->next;
+            if(slow ==  fast){
+                slow = head;
+                while(slow != fast){
+                  slow = slow->next;
+                  fast = fast->next;
+                }
+                return slow;
+            }
+        }
+        return nullptr;
+    }
+};
+/*
+this work because when slow dist from head is l1 fast dist from head is 2*l1
+when slow is at starting of loop same conditon above is valid now when slow enter the loop
+fast is chasing slow hey slow where are you as fast is moving twice the speed of slow after d length it will reach the point where slow is present now l1 was the distance when slow enter the loop and as fast is 2*l1 from head mean its l1 distance inside the loop and after the d distace loop is over at some point in loop what does that mean loop size was l1 + d now slow move d distance from starting point and stop but l1 distance is remaing to reach the starting point but wait what l1 was the distance between head and loop starting point this is why this code works
+*/
+
+
 // brute force Tc=O(n*2*log n) sc = O(n)
 class Solution {
 public:
