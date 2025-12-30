@@ -1,0 +1,55 @@
+//insertion in dll before the node
+
+// insetion at head
+Node* insertbeforehead(Node* head,int el){ 
+    if (head == nullptr) return new Node(el);
+    Node* temp = new Node(el, head, nullptr);
+    head->back = temp;
+    return temp;
+}
+
+//insertion at tail
+Node* insertbeforetail(Node* head,int el){
+    if(head == nullptr) return new Node(el);
+    if(head->next ==nullptr) return new Node(el,head,nullptr);
+    Node* temp = head;
+    while(temp->next){
+        temp = temp->next;
+    }
+    Node* a = new Node(el, temp, temp->back);
+    temp->back->next = a;
+    temp->back = a;
+    return head;
+}
+
+//insert before kth
+Node* insertbeforekth(Node* head, int k, int el){
+    if(k == 1) return insertbeforehead(head, el);
+    Node* temp = head;
+    int cnt = 0;
+    while(temp){
+        cnt++;
+        if(cnt == k) break;
+        temp = temp->next;
+    }
+    Node* newnode = new Node(el, temp, temp->back);
+    temp->back->next=newnode;
+    temp->back = newnode;
+    return head;
+}
+
+// insert before node
+void insertbeforenode(Node* temp, int el){
+    Node* prev = temp->back;
+    Node* newnode = new Node(el, temp, prev);
+    prev->next = newnode;
+    temp->back = newnode;
+}
+
+int main(){
+    vector<int> arr={1,5,9,6};
+    Node* head=converttodll(arr);
+    head = insertbeforekth(head,7,3);
+    print(head);
+    return 0;
+}
