@@ -1,3 +1,18 @@
+//by tortoise and hare alog optimized tc=O(n) sc=o(1)
+class Solution {
+public:
+    bool hasCycle(ListNode *head) {
+        ListNode* slow = head;
+        ListNode* fast = head;
+        while(fast && fast->next){
+            slow = slow->next;//move 1 step
+            fast = fast->next->next;//move 2 step
+            if(slow == fast) return true; // detect the loop
+        }
+        return false;
+    }
+};
+
 // Brute force tc=O(n*2*log(n)) sc = O(n)
 class Solution {
 public:
