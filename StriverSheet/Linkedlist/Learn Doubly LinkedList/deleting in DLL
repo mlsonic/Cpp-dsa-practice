@@ -1,0 +1,86 @@
+//deleting in doubly linked list
+
+//delete the head
+Node* deleteHeadindll(Node* head){
+    if(head == nullptr) return head;
+    if(head->next == nullptr) {
+        delete head;
+        return nullptr;
+    }
+    Node* temp = head->next;
+    temp->back=nullptr;
+    delete head;
+    return temp;
+}
+
+//delete the tail
+Node* deleteTailindll(Node* head){
+    if(head == nullptr) return head;
+    if(head->next == nullptr) {
+        delete head;
+        return nullptr;
+    }
+    Node* temp = head;
+    while(temp->next){
+        temp = temp->next;
+    }
+    Node* prev = temp->back; //first we store pointer to second last element
+    prev->next = nullptr;
+    temp->back = nullptr;
+    delete temp;
+    return head;
+}
+
+//delete the kth element
+Node* deletekth(Node* head, int k){
+    if(head == nullptr) return head;
+    Node* temp = head;
+    int cnt=0;
+    while(temp){
+        cnt++;
+        if(cnt == k) break;
+        temp = temp->next;
+    }
+    Node* prev = temp->back;
+    Node* front = temp->next;
+    if( prev == nullptr && front == nullptr){
+        delete head;
+        return nullptr;
+    }
+    else if(prev == nullptr){
+        return deleteHeadindll(head);
+    }
+    else if(front == nullptr){
+        return deleteTailindll(head);
+    }
+    front->back = prev;
+    prev->next=front;
+    temp->next = nullptr;
+    temp->back = nullptr;
+    delete temp;
+    return head;
+}
+
+//delete the node node cannot be head
+void deletenodeill(Node* temp){
+    Node* prev = temp->back;
+    Node* front = temp->next;
+    if(front == nullptr){
+        prev->next = nullptr;
+        temp->back = nullptr;
+        free (temp);
+        return;
+    }
+    prev->next = front;
+    front->back = prev;
+    temp->next = temp->back = nullptr;
+    free(temp);
+}
+
+int main(){
+    vector<int> arr={1,5,9,8};
+    Node* head=converttodll(arr);
+    deletenodeill(head->next);
+    print(head);
+    return 0;
+}
