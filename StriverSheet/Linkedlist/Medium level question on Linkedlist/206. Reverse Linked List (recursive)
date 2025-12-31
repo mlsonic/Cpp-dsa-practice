@@ -1,0 +1,14 @@
+// By recursion Tc= O(N) sc= O(N) 
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        if( head == nullptr || head->next == nullptr){
+            return head;
+        }
+        ListNode* newhead = reverseList(head->next);//move till last element
+        ListNode* front = head->next;
+        front->next = head;
+        head->next = nullptr;
+        return newhead;
+    }
+};
