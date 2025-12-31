@@ -1,3 +1,28 @@
+//using tortoise and harse algo tc=O(n) sc=O(1)
+int findlength(Node* slow, Node* fast){
+    int cnt = 1;
+    fast = fast->next;
+    while(slow != fast){
+    fast = fast->next;
+        cnt++;
+    }
+    return cnt;
+}
+
+class Solution {
+  public:
+    int lengthOfLoop(Node *head) {
+        Node* slow = head;
+        Node* fast = head;
+        while(fast && fast->next){
+            slow = slow->next;
+            fast = fast->next->next;
+            if(slow == fast) return findlength(slow,fast);
+        }
+        return 0;
+    }
+};
+
 // Brute force using hashing tc=O(n*2*log(n)) sc=O(n)
 class Solution {
   public:
@@ -16,3 +41,4 @@ class Solution {
         return 0;
     }
 };
+
