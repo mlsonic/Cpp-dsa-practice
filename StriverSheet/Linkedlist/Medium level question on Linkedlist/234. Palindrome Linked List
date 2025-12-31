@@ -1,0 +1,44 @@
+
+
+//stack Tc=O(2n) sc=(n);
+class Solution {
+public:
+    bool isPalindrome(ListNode* head) {
+        ListNode* temp = head;
+        stack<int> st;
+        while(temp){
+            st.push(temp->val);
+            temp = temp->next;
+        }
+        temp = head;
+        while(temp){
+            if(st.top() != temp->val) return false;
+            st.pop();
+            temp = temp->next;
+        }
+        return true;
+    }
+};
+
+//brute force Tc=O(2n) sc=(2n);
+class Solution {
+public:
+    bool isPalindrome(ListNode* head) {
+        ListNode* temp = head;
+        stack<int> st;
+        queue<int> qu;
+        while(temp){
+            st.push(temp->val);
+            qu.push(temp->val);
+            temp = temp->next;
+        }
+        temp = head;
+        while(temp){
+            if(st.top() != qu.front()) return false;
+            st.pop();
+            qu.pop();
+            temp = temp->next;
+        }
+        return true;
+    }
+};
