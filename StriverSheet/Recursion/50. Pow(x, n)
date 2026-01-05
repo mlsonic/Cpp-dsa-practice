@@ -1,0 +1,32 @@
+
+//brute force recursion
+class Solution {
+public:
+    double myPow(double x, int n) {
+        if(n==0){
+            return 1;
+        }
+        if(n>0){
+            x = x * myPow(x,n-1);
+        }
+        else if(n<0){
+            x=(1/x)*myPow(x,n+1);
+        }
+        return x;
+    }
+};
+
+//Brute force
+class Solution {
+public:
+    double myPow(double x, int n) {
+        double a=1;
+        int c=abs(n);
+        for(int i=0;i<c;i++){
+            a=a*x;
+        }
+        if(n>=0) return a;
+        else return 1/a;
+    }
+};
+
