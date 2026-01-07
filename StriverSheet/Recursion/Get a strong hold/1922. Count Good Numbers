@@ -1,0 +1,17 @@
+//brute force 
+class Solution {
+public:
+    int countGoodNumbers(long long n) {
+        const long long MOD = 1e9 + 7;
+        long long ans = 1;
+        while (n > 0) {
+            if (n % 2 == 1) {
+                ans = (ans * 5) % MOD;
+            } else {
+                ans = (ans * 4) % MOD;
+            }
+            n--;
+        }
+        return (int)ans;
+    }
+};
