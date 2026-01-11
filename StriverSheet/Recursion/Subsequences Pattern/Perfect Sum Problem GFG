@@ -1,0 +1,25 @@
+//Brute force
+class Solution {
+  public:
+    
+    void helper(int i , int &cnt , vector<int> &arr , int a, int target){
+        if( i >= arr.size()){
+            if(a == target ){
+            cnt++;
+            }
+            return;
+        }
+        a += arr[i];
+        helper(i+1 , cnt , arr , a , target);
+        a -= arr[i];
+        helper(i+1 , cnt , arr , a , target);
+    }
+    
+    int perfectSum(vector<int>& arr, int target) {
+        int a = 0;
+        int cnt = 0;
+        int i = 0;
+        helper(i , cnt , arr , a , target);
+        return cnt;
+    }
+};
