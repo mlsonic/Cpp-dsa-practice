@@ -1,0 +1,24 @@
+//Brute force using set Tc=O(n² x (log(2^n) x n) sc=O(n · 2^n)
+class Solution {
+public:
+
+    void func(int i,set<vector<int>> &st, vector<int> &a, vector<int>& nums){
+        if(i >= nums.size()){
+            st.insert(a);
+            return;
+        }
+        a.push_back(nums[i]);
+        func(i+1,st,a ,nums);
+        a.pop_back();
+        func(i+1,st,a ,nums);
+    }
+
+    vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+        sort(nums.begin(),nums.end());
+        set<vector<int>> st;
+        vector<int> a;
+        func(0,st,a ,nums);
+        vector<vector<int>> ans(st.begin(),st.end());
+        return ans;
+    }
+};
