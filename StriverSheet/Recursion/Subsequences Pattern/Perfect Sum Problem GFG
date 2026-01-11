@@ -1,3 +1,23 @@
+//striver pattern code to remember 
+class Solution {
+public:
+    
+    int func(int i, vector<int> &arr, int target) {
+        if (i >= arr.size()) return target == 0;
+
+        if (target < 0) return 0;
+
+        return func(i + 1, arr, target - arr[i]) 
+             + func(i + 1, arr, target);
+    }
+    
+    int perfectSum(vector<int>& arr, int target) {
+        return func(0, arr, target);
+    }
+};
+
+
+
 //Brute force
 class Solution {
   public:
