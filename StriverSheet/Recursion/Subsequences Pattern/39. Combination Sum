@@ -1,0 +1,23 @@
+// tc = O(pow(2,t)*k)  sc = O(t) t is target div smallet element give depth of recursion
+class Solution {
+public:
+
+    void func(int i , vector<vector<int>> &ans, vector<int> a, vector<int> nums, int target){
+        if(i == nums.size()){
+            if(target == 0) ans.push_back(a);
+            return;
+        }
+        if(target < 0) return;
+        a.push_back(nums[i]);
+        func(i,ans,a,nums,target-nums[i]);
+        a.pop_back();
+        func(i+1,ans,a,nums,target);
+    }
+
+    vector<vector<int>> combinationSum(vector<int>& nums, int target) {
+        vector<vector<int>> ans;
+        vector<int> a;
+        func(0,ans,a,nums,target);
+        return ans;
+    }
+};
