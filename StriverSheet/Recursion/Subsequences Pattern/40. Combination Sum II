@@ -1,0 +1,57 @@
+//My brute force but better than set
+class Solution {
+public:
+    void func(int i , vector<int> a,vector<vector<int>> &ans,vector<int> nums,int target){
+        if(i == nums.size()){
+            if(target == 0 ) ans.push_back(a);
+            return;
+        }
+        if(target < 0) return;
+        a.push_back(nums[i]); 
+        func(i+1,a,ans,nums,target-nums[i]);
+        a.pop_back();
+        while(i < nums.size()-1 &&  nums[i] == nums[i+1]) i++;
+        func(i+1,a,ans,nums,target);
+
+    }
+    vector<vector<int>> combinationSum2(vector<int>& nums, int target) {
+        vector<vector<int>> ans;
+        vector<int> a;
+        sort(nums.begin(),nums.end());
+        func(0,a,ans,nums,target);
+        return ans;
+    }
+};
+
+//Brute force set take nlog(n) extra
+class Solution {
+public:
+    vector<vector<int>> res;
+    vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
+        res.clear();
+        sort(candidates.begin(), candidates.end());
+        vector<int> cur;
+        dfs(candidates, target, 0, cur, 0);
+        return res;
+    }
+
+private:
+    void dfs(vector<int>& candidates, int target, int i, vector<int>& cur, int total) {
+        if (total == target) {
+            res.push_back(cur);
+            return;
+        }
+        if (total > target || i == candidates.size()) {
+            return;
+        }
+
+        cur.push_back(candidates[i]);
+        dfs(candidates, target, i + 1, cur, total + candidates[i]);
+        cur.pop_back();
+
+        while (i + 1 < candidates.size() && candidates[i] == candidates[i + 1]) {
+            i++;
+        }
+        dfs(candidates, target, i + 1, cur, total);
+    }
+};
