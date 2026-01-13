@@ -1,3 +1,51 @@
+//striver optimize without set tc=O(pow(2,n)*n) sc=(pow(2,n)*n)
+class Solution {
+public:
+
+    void func(int i,vector<vector<int>> &st, vector<int> &a, vector<int>& nums){
+        st.push_back(a);
+        for(int j = i ; j < nums.size() ; j++){
+            if( j > i && nums[j]==nums[j-1]) continue;
+            a.push_back(nums[i]);
+            func(i+1,st,a ,nums);
+            a.pop_back();
+        }
+    }
+
+    vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+        vector<vector<int>> st;
+        vector<int> a;
+        sort(nums.begin(),nums.end());
+        func(0,st,a ,nums);
+        return st;
+    }
+};
+
+//optimize without set tc=O(pow(2,n)*n) sc=(pow(2,n)*n)
+class Solution {
+public:
+
+    void func(int i,vector<vector<int>> &st, vector<int> &a, vector<int>& nums){
+        if(i == nums.size() ){
+            st.push_back(a);
+            return;
+        }
+        a.push_back(nums[i]);
+        func(i+1,st,a ,nums);
+        a.pop_back();
+        while(i+1 < nums.size() && nums[i] == nums[i+1]) i++;
+        func(i+1,st,a ,nums);
+    }
+
+    vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+        vector<vector<int>> st;
+        vector<int> a;
+        sort(nums.begin(),nums.end());
+        func(0,st,a ,nums);
+        return st;
+    }
+};
+
 //Brute force using set Tc=O(n² x (log(2^n) x n) sc=O(n · 2^n)
 class Solution {
 public:
