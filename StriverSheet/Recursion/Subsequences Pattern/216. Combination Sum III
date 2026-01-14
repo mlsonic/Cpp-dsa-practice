@@ -1,4 +1,28 @@
-//My brute force
+//little improvement to increase efficency
+class Solution {
+public:
+    void func(int i , vector<int> &a,vector<vector<int>> &ans,vector<int> &nums,int n,int k){
+        if( i == nums.size()){
+            if(a.size() == k && n == 0) ans.push_back(a);
+            return;
+        }
+        if(n < 0 || a.size() > k) return;
+        a.push_back(nums[i]);
+        func(i+1,a,ans,nums,n-nums[i],k);
+        a.pop_back();
+        func(i+1,a,ans,nums,n,k);
+    }
+
+    vector<vector<int>> combinationSum3(int k, int n) {
+        vector<vector<int>> ans;
+        vector<int> a;
+        vector<int> nums = {1,2,3,4,5,6,7,8,9};
+        func(0,a,ans,nums,n,k);
+        return ans;
+    }
+};
+
+//My brute force tc=O(
 class Solution {
 public:
     void func(int i , vector<int> &a,vector<vector<int>> &ans,vector<int> &nums,int n,int k){
