@@ -1,4 +1,4 @@
-//little improvement to increase efficency
+//little improvement to increase efficency tc= O(2^9*k) ≈ O(512*k) sc = O(k)
 class Solution {
 public:
     void func(int i , vector<int> &a,vector<vector<int>> &ans,vector<int> &nums,int n,int k){
@@ -22,7 +22,7 @@ public:
     }
 };
 
-//My brute force tc=O(
+//My brute force tc= O(2^9*k) ≈ O(512*k) sc = O(k)
 class Solution {
 public:
     void func(int i , vector<int> &a,vector<vector<int>> &ans,vector<int> &nums,int n,int k){
