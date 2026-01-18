@@ -1,0 +1,31 @@
+// my approch tc = O(pow(2,2n)+
+class Solution {
+public:
+
+    void func(int n,int open,int close,string s,vector<string> &st){
+        if(open == n && close == n){
+            if(open == n && close == n){
+                st.push_back(s);
+            }
+            return;
+        }
+        if(open < n ){
+            s += '(';
+            func(n,open+1,close,s,st);
+            s.pop_back();
+        }
+        if(close < open) {
+        s += ')';
+        func(n,open,close + 1 ,s,st);
+        }
+    }
+
+    vector<string> generateParenthesis(int n) {
+        vector<string> st;
+        string s = "";
+        int open = 0;
+        int close = 0;
+        func(n,open,close,s,st);
+        return st;
+    }
+};
