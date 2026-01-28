@@ -1,0 +1,49 @@
+// tc = O(1) good one
+
+
+//tc = O(N) not ideal 
+class myQueue {
+    vector<int> arr;
+    int size ;
+    int top ; 
+  public:
+    myQueue(int n) {
+        top = -1;
+        size = n;
+    }
+
+    bool isEmpty() {
+        if(arr.size() == 0) return true;
+        return false;
+    }
+
+    bool isFull() {
+        if(arr.size() == size) return true;
+        return false;
+    }
+
+    void enqueue(int x) {
+        if(arr.size() < size){
+            arr.push_back(x);
+            top++;
+        }
+        
+    }
+
+    void dequeue() {
+        if(arr.size() > 0){
+            arr.erase(arr.begin());
+            top--;
+        }
+    }
+
+    int getFront() {
+        if(arr.size() > 0) return arr[0];
+        return -1;
+    }
+
+    int getRear() {
+        if(arr.size() > 0) return arr[top];
+        return -1;
+    }
+};
