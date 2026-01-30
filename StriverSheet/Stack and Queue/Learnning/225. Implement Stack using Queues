@@ -1,0 +1,34 @@
+//My brute force solution
+class MyStack {
+    queue<int> que;
+public:
+    MyStack() {
+    }
+    
+    void push(int x) {
+        que.push(x);
+    }
+    
+    int pop() {
+        int a = que.back();
+        if(que.size() == 0 ){
+            que.pop();
+            return a;
+        }
+        queue<int> q;
+        while(que.size()-1){
+            q.push(que.front());
+            que.pop();
+        }
+        que = q;
+        return a;  
+    }
+    
+    int top() {
+        return que.back();
+    }
+    
+    bool empty() {
+        return que.empty();
+    }
+};
