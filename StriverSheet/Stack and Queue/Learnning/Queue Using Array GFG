@@ -1,4 +1,62 @@
+
 // tc = O(1) good one
+class myQueue {
+    vector<int> arr;
+    int start,end,currsize = 0,size;
+  public:
+    myQueue(int n) {
+        size = n;
+        start = -1;
+        end = -1 ;
+        arr.resize(n);
+    }
+
+    bool isEmpty() {
+        return currsize == 0;
+    }
+
+    bool isFull() {
+        return currsize == size;
+    }
+
+    void enqueue(int x) {
+        if(currsize == 0) {
+            start = 0;
+        }
+        if(isFull()){
+            return;
+        }
+        end = (end + 1) % size;
+        arr[end] = x;
+        currsize++;
+    }
+
+    void dequeue() {
+        if(isEmpty()){
+            return ;
+        }
+        if(currsize > 0){
+            start ++;
+            start = start % size;
+            currsize--;
+        }
+        if(currsize == 0){
+            start = -1;
+            end = -1;
+        }
+    }
+
+    int getFront() {
+        if (isEmpty()) return -1;
+        return arr[start];
+    }
+
+    int getRear() {
+        if (isEmpty()) return -1;
+        return arr[end];
+}
+
+};
 
 
 //tc = O(N) not ideal 
