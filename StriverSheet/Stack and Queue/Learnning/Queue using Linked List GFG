@@ -22,7 +22,7 @@ class myQueue {
     }
 
     bool isEmpty() {
-        if (currsize == 0) return true;
+        if (start == NULL) return true;
         return false;
     }
 
