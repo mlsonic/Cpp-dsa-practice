@@ -27,7 +27,7 @@ class myQueue {
     }
 
     void enqueue(int x) {
-        if(currsize == 0){
+        if(start == NULL){
             Node* temp = new Node(x);
             start = temp;
             end =  temp;
