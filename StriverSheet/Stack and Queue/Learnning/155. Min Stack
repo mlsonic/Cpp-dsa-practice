@@ -1,0 +1,30 @@
+// brute force tc = O(n)
+class MinStack {
+    stack<char> st;
+public:
+    MinStack() {
+    }
+    void push(int val) {
+        st.push(val);
+    }
+    
+    void pop() {
+        st.pop();
+    }
+    
+    int top() {
+        return st.top();
+    }
+    
+    int getMin() {
+        stack<int> s = st;
+        int mini = INT_MAX;
+        while(!st.empty()){
+            mini = min(mini,st.top());
+            st.pop();
+            cout << mini;
+        }
+        st = s;
+        return mini;
+    }
+};
