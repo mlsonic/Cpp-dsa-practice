@@ -1,0 +1,40 @@
+class myStack {
+    int currSize;
+    Node* top;
+
+public:
+    myStack() {
+        top = nullptr;
+        currSize = 0;
+    }
+
+    bool isEmpty() {
+        return currSize == 0;
+    }
+
+    void push(int x) {
+        Node* temp = new Node(x);
+        temp->next = top;
+        top = temp;
+        currSize++;
+    }
+
+    void pop() {
+        if (!isEmpty()) {
+            Node* temp = top;
+            top = top->next;
+            delete temp;
+            currSize--;
+        }
+    }
+
+    int peek() {
+        if (!isEmpty())
+            return top->data;
+        return -1;
+    }
+
+    int size() {
+        return currSize;
+    }
+};
