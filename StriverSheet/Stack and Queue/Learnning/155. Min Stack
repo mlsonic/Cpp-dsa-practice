@@ -1,3 +1,66 @@
+//Optimal same but without variable
+class MinStack {
+    stack<int> s1;
+    stack<int> s2;
+public:
+    MinStack() {
+    }
+    
+    void push(int val) {
+        s1.push(val);
+        if(s2.empty()) s2.push(val);
+        else s2.push(min(val, s2.top()));
+    }
+
+    
+    void pop() {
+        if(!s1.empty()) s1.pop();
+        if(!s2.empty()) s2.pop();
+    }
+    
+    int top() {
+        return s1.top();
+    }
+    
+    int getMin() {
+        return s2.top();
+    }
+};
+
+// better using varibale tc =  O(1) sc = O(2n)
+class MinStack {
+    stack<int> s1;
+    stack<int> s2;
+    int mini = INT_MAX;
+public:
+    MinStack() {
+    }
+    
+    void push(int val) {
+        mini = min(val,mini);
+        s1.push(val);
+        s2.push(mini);
+    }
+    
+    void pop() {
+        if(!s1.empty()) s1.pop();
+        if(!s2.empty()) {
+            s2.pop();
+            if(!s2.empty()) mini = s2.top();
+            else mini = INT_MAX;
+        }
+
+    }
+    
+    int top() {
+        return s1.top();
+    }
+    
+    int getMin() {
+        return s2.top();
+    }
+};
+
 // brute force tc = O(n)
 class MinStack {
     stack<char> st;
