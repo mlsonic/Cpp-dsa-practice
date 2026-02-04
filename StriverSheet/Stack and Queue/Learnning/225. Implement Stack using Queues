@@ -1,3 +1,78 @@
+//loop in push by striver
+class MyStack {
+    queue<int> que;
+
+public:
+    MyStack() {
+
+    }
+
+    void push(int x) {
+        que.push(x);
+        int n = que.size();
+        while(n-1){
+            que.push(que.front());
+            que.pop();
+            n--;
+        }
+    }
+
+    int pop() {
+        if (que.empty()) return -1;
+        int a = que.front();
+        que.pop();
+        return a;
+    }
+
+    int top() {
+        if (que.empty()) return -1;
+        return que.front();
+    }
+
+    bool empty() {
+        return que.empty();
+    }
+};
+
+
+
+// no extra space in pop similary can be done in push
+class MyStack {
+    queue<int> que;
+
+public:
+    MyStack() {
+
+    }
+
+    void push(int x) {
+        que.push(x);
+    }
+
+    int pop() {
+        if (que.empty()) return -1;
+        int n = que.size();
+        while (n > 1) {
+            que.push(que.front());
+            que.pop();
+            n--;
+        }
+
+        int a = que.front();
+        que.pop();
+        return a;
+    }
+
+    int top() {
+        if (que.empty()) return -1;
+        return que.back();
+    }
+
+    bool empty() {
+        return que.empty();
+    }
+};
+
 //My brute force solution
 class MyStack {
     queue<int> que;
