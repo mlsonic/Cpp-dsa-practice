@@ -1,4 +1,4 @@
-//striver code
+//striver code for less push tc = O(2N) sc = O(2N)
 class MyQueue {
     stack<int> st;
     stack<int> s;
