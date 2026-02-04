@@ -1,3 +1,61 @@
+// stiver code when push is more top and pop are less
+class MyQueue {
+    stack<int> st;
+    stack<int> s;
+public:
+    MyQueue() {
+        
+    }
+    
+    void push(int x) {
+        st.push(x); 
+    }
+    
+    int pop() {
+        if(!s.empty()){
+            int a = s.top();
+            s.pop();
+            return a;
+
+        }
+        else{
+            while(!st.empty()){
+                s.push(st.top());
+                st.pop();
+            }
+            int a = s.top();
+            s.pop();
+            return a;
+        }
+    }
+    
+    int peek() {
+        if(!s.empty()){
+            return s.top();
+        }
+        else{
+            while(!st.empty()){
+                s.push(st.top());
+                st.pop();
+            }
+            return s.top();
+        }
+    }
+    
+    bool empty() {
+        return s.empty() && st.empty();
+    }
+};
+
+/**
+ * Your MyQueue object will be instantiated and called as such:
+ * MyQueue* obj = new MyQueue();
+ * obj->push(x);
+ * int param_2 = obj->pop();
+ * int param_3 = obj->peek();
+ * bool param_4 = obj->empty();
+ */
+
 //striver code for less push tc = O(2N) sc = O(2N)
 class MyQueue {
     stack<int> st;
