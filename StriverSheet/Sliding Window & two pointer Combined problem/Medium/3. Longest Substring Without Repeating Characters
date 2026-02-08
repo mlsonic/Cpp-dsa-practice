@@ -1,0 +1,22 @@
+//Brute force tc = O(n*n) sc = (256 + n*n)
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        int maxi = 0;
+        for(int i = 0 ; i < s.size(); i++){
+            string sub ="";
+            vector<int> arr(256,0);
+            for(int j = i; j < s.size(); j++){
+                if(arr[s[j]] == 0){
+                    sub += s[j];
+                    arr[s[j]] += 1;
+                }
+                else {
+                    break;
+                }
+            }
+            maxi = max(maxi,(int)sub.size());
+        }
+        return maxi;
+    }
+};
