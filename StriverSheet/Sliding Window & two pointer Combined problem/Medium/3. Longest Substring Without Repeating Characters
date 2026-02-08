@@ -1,4 +1,4 @@
-//Brute force tc = O(n*n) sc = (256 + n*n)
+//Brute force tc = O(n*n) sc = (256+n)
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
