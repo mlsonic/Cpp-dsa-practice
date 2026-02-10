@@ -1,3 +1,26 @@
+//optimal tc = O(n) sc = (256 )
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        int arr[256];
+        int n = s.size();
+        for(int i = 0; i < 256; i++){
+            arr[i] = -1;
+        }
+        int l = 0,r = 0,maxlen = 0;
+        while(r < n){
+            if(arr[s[r]] != -1){
+                l = max(arr[s[r]] + 1,l);
+            }
+            int len = r-l+1;
+            maxlen = max(len,maxlen);
+            arr[s[r]] = r;
+            r++;
+        }
+        return maxlen;
+    }
+};
+
 //Brute force tc = O(n*n) sc = (256 )
 class Solution {
 public:
