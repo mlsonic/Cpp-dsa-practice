@@ -1,4 +1,22 @@
-
+//Brute force stirver tc = O(n^2) sc = o(n)
+class Solution {
+public:
+    vector<int> nextGreaterElements(vector<int>& nums) {
+        vector<int> ans;
+        int n = nums.size();
+        for(int i = 0 ; i < n ; i++){
+            for(int j = i+1 ; j < n+i; j++){
+                int ind = j % n;
+                if(nums[ind] > nums[i]){
+                    ans.push_back(nums[ind]);
+                    break;
+                }
+            }
+            if(ans.size() == i) ans.push_back(-1);
+        }
+        return ans;
+    }
+};
 
 //Brute force tc = O(n^2) sc = o(n)
 class Solution {
