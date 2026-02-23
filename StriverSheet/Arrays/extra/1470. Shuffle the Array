@@ -6,7 +6,6 @@ public:
         int i = 0;
         int j = n;
         int k = 0;
-
         while (i < n) {
             ans[k++] = nums[i++];
             ans[k++] = nums[j++];
