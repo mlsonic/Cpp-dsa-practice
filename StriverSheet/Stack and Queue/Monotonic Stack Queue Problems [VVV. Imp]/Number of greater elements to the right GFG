@@ -1,0 +1,42 @@
+//optimal approch will be make nge array using nge stack code and pull out the answer from 
+that using the indices
+
+// brute force using stack tc = O(q*N) sc = (q*n)
+class Solution {
+  public:
+
+    vector<int> count_NGE(vector<int> &arr, vector<int> &indices) {
+        int q = indices.size();
+        vector<int> ans(q);
+        for(int i = 0 ; i < q ; i++){
+            int curr = arr[indices[i]];
+            stack<int> st;
+            int r = arr.size()-1;
+            while(r > indices[i]){
+                if(arr[r] > curr ){
+                    st.push(arr[r]);
+                }
+                r--;
+            }
+            ans[i] = st.size();
+        }
+        return ans;
+    }
+};
+
+// brute force same tc and less space than above
+class Solution {
+  public:
+
+    vector<int> count_NGE(vector<int> &arr, vector<int> &indices) {
+        vector<int> ans;
+        for(int i = 0 ; i < indices.size() ;i++){
+            int cnt  = 0;
+            for(int j = indices[i]+1 ; j < arr.size() ; j++){
+                if(arr[indices[i]] < arr[j]) cnt++;
+            }
+            ans.push_back(cnt);
+        }
+        return ans;
+    }
+};
