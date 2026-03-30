@@ -1,3 +1,33 @@
+//optimal approch tc= O(n) sc = O(1)
+class Solution {
+public:
+    int trap(vector<int>& arr) {
+        int n = arr.size();
+        int leftmax = 0,rightmax = 0, total = 0, l = 0,r = n-1;
+        while(l < r){
+            if(arr[l] <= arr[r]){
+                if(leftmax > arr[l]){
+                    total += leftmax-arr[l];
+                }
+                else{
+                    leftmax = arr[l];
+                }
+                l++;
+            }
+            else{
+                if(rightmax > arr[r]){
+                    total += rightmax-arr[r];
+                }
+                else{
+                    rightmax = arr[r];
+                }
+                r--;
+            }
+        }
+        return total;
+    }
+};
+
 //brute force tc = O(3N) sc = O(2N)
 class Solution {
 public:
