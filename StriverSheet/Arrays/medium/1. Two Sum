@@ -1,0 +1,47 @@
+//optimal using map but ordered tc = O(n) sc = O(n)
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        int n = nums.size();
+        unordered_map<int,int> mpp;
+        for(int i = 0; i < n; i++){
+          int num = nums[i];
+          int moreNeeded = target-num;
+          if(mpp.find(moreNeeded) != mpp.end()) return {mpp[moreNeeded],i};
+          mpp[num]=i;
+        }    
+        return {};   
+    }
+};
+
+
+//optimal using map but ordered tc = O(nlogn) sc = O(n)
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        int n = nums.size();
+        map<int,int> mpp;
+        for(int i = 0; i < n; i++){
+          int num = nums[i];
+          int moreNeeded = target-num;
+          if(mpp.find(moreNeeded) != mpp.end()) return {mpp[moreNeeded],i};
+          mpp[num]=i;
+        }    
+        return {};   
+    }
+};
+
+//brute force tc = O(n^2) sc = O(1)
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        int n = nums.size();
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j < n; j++){
+                if(i == j) continue;
+                if(nums[i] + nums[j] == target) return {i,j};
+            }
+        }    
+        return {};   
+    }
+};
