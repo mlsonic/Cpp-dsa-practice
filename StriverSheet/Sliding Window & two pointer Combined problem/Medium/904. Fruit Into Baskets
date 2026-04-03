@@ -1,4 +1,24 @@
-// Brute force tc = O(n^2) sc = O(2)
+// Brute force tc = O(n^2) sc = O(3)
+class Solution {
+public:
+    int totalFruit(vector<int>& fruits) {
+        int n = fruits.size();
+        int cnt = 0;
+        for(int i = 0 ; i < n ; i++){
+            set<int> st;
+            for(int j = i ; j < n ; j++){
+                st.insert(fruits[j]);
+                if(st.size() <= 2){
+                    cnt = max(cnt,j-i+1);
+                }
+                else break;
+            }
+        }  
+        return cnt;
+    }
+};
+
+// Brute force tc = O(n^2) sc = O(3)
 class Solution {
 public:
     int totalFruit(vector<int>& fruits) {
