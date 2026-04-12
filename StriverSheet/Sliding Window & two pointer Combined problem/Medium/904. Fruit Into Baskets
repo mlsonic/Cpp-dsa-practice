@@ -1,3 +1,25 @@
+//better solution tc = O(n+n) sc =O(3) 
+class Solution {
+public:
+    int totalFruit(vector<int>& fruits) {
+        int l = 0,r =0;
+        int n = fruits.size();
+        int total = 0;
+        map<int,int> mpp;
+        while(r < n){
+            mpp[fruits[r]]++;
+            while(mpp.size() > 2){
+                mpp[fruits[l]]--;
+                if(mpp[fruits[l]] == 0) mpp.erase(fruits[l]);
+                l++;
+            }
+            total = max(total,r-l+1);
+            r++;
+        }
+        return total;
+    }
+};
+
 // Brute force tc = O(n^2) sc = O(3)
 class Solution {
 public:
