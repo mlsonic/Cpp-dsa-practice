@@ -1,4 +1,48 @@
+//optimal approch tc = O(2n) sc = O(26)
+class Solution {
+public:
+    int characterReplacement(string s, int k) {
+        int n = s.size(), l = 0, r = 0;
+        int maxfreq = 0, maxlen = 0;
+        vector<int> mpp(26,0);
+        while(r < n){
+            mpp[s[r]-'A']++;
+            maxfreq = max(maxfreq, mpp[s[r]-'A']);
+            int changes = r-l+1-maxfreq;
+            if(changes > k){
+                mpp[s[l]-'A']--;
+                l++;
+                changes = r-l+1-maxfreq;
+            }
+            maxlen = max(maxlen,r-l+1);
+            r++;
+        }
+        return maxlen;
+    }
+};
+
 //better approch tc = O(2n) sc = O(26)
+class Solution {
+public:
+    int characterReplacement(string s, int k) {
+        int n = s.size(), l = 0, r = 0;
+        int maxfreq = 0, maxlen = 0;
+        vector<int> mpp(26,0);
+        while(r < n){
+            mpp[s[r]-'A']++;
+            maxfreq = max(maxfreq, mpp[s[r]-'A']);
+            int changes = r-l+1-maxfreq;
+            while(changes > k){
+                mpp[s[l]-'A']--;
+                l++;
+                changes = r-l+1-maxfreq;
+            }
+            maxlen = max(maxlen,r-l+1);
+            r++;
+        }
+        return maxlen;
+    }
+};
 
 //Brute force solution tc = O(n^2) sc =  O(26)
 class Solution {
