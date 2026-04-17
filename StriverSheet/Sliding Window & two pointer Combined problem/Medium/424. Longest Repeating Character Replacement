@@ -1,0 +1,33 @@
+//better approch tc = O(2n) sc = O(26)
+
+//Brute force solution tc = O(n^2) sc =  O(26)
+class Solution {
+public:
+    int characterReplacement(string s, int k) {
+        int n = s.size();
+        int maxlen = 0;
+        for(int i = 0; i < n; i++){
+            int a = k, b = k;
+            int cnt = 0, cnt1 = 0;
+            for(int j = i; j < n; j++){
+                if(s[i] == s[j]) cnt++;
+                else if (a > 0){
+                    cnt++;
+                    a--;
+                }
+                else break;
+            }
+            for(int j = n-1; j >= i; j--){
+                if(s[i] == s[j]) cnt1++;
+                else if (a > 0){
+                    cnt1++;
+                    b--;
+                }
+                else break;
+            }
+            cnt = max(cnt, cnt1);
+            maxlen = max(maxlen, cnt);
+        }
+        return maxlen;
+    }
+};
