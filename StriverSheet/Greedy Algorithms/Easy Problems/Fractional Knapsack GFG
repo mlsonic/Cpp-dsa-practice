@@ -1,1 +1,31 @@
+//optimal solution tc = O(nlogn) sc = O(n)
+class Solution {
+  public:
+    static bool cmp(vector<double>& a, vector<double>& b) {
+        return a[2] > b[2];
+    }
 
+    double fractionalKnapsack(vector<int>& val, vector<int>& wt, int capacity) {
+        vector<vector<double>> vaf;
+        for(int i = 0; i < wt.size(); i++) {
+            double ratio = (double)val[i] / wt[i];
+            vaf.push_back({(double)val[i], (double)wt[i], ratio});
+        }
+        sort(vaf.begin(), vaf.end(), cmp);
+        double ans = 0;
+        for(int i = 0; i < vaf.size(); i++) {
+            double value = vaf[i][0];
+            double weight = vaf[i][1];
+            double ratio = vaf[i][2];
+            if(capacity >= weight) {
+                ans += value;
+                capacity -= weight;
+            }
+            else {
+                ans += ratio * capacity;
+                break;
+            }
+        }
+        return ans;
+    }
+};
